@@ -1,19 +1,80 @@
 body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.deck-card {
+.score-panel {
+  display: inline;
   width: 300px;
+}
+.overlay {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  color: #ff6d00;
+  font-family: Creepy, serif;
+}
+.overlay.visible {
+  display: flex;
+  flex-direction: column;
+}
+.progress {
+  height: 24px;
+  width: 100%;
+  background-color: #d8d8d8;
+  border-radius: 20px;
+}
+
+.progress_done {
+  height: 24px;
+  width: 0;
+  background: linear-gradient(to left, #f2709c, #ff9472);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+}
+
+.game-section {
+  width: 500px;
   display: flex;
   flex-wrap: wrap;
 }
-.card {
+
+.memory-card {
   width: 100px;
   height: 50px;
   display: inline-flex;
   background-color: skyblue;
   text-align: center;
   margin: 10px;
+  position: relative;
+}
+.front-card.flip {
+  /* effect in fliping the card*/
+  transform: rotateY(180deg);
+  display: none;
 }
 
 #play-again {
   display: none;
+}
+
+.front-card {
+  width: 100%;
+  height: 100%;
+  background-color: burlywood;
+  position: absolute;
+  backface-visibility: hidden;
+}
+.front-card:hover {
+  background-color: cornsilk;
+}
+.back-card {
+  background-color: black;
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }

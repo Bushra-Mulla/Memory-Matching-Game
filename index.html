@@ -1,27 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>Memory Game</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Events</title>
     <link rel="stylesheet" href="style/style.css" />
   </head>
+
   <body>
     <div class="header">
       <h1>Memory Game</h1>
+      <div class="overlay visible">Click to Start</div>
       <div class="score-panel">
-        <!--progress-bar / timer / moves / win /lose /
+        <p id="moveCounter">move: 0</p>
+        <p id="timer"></p>
+        <div class="progress">
+          <div class="progress_done" data_done="0">o%</div>
+          <!--progress-bar / timer / moves / win /lose /
         restart / -->
+        </div>
       </div>
     </div>
-    <div class="deck-card">
-      <div class="card">1</div>
-      <div class="card">2</div>
-      <div class="card">3</div>
-      <div class="card">4</div>
-      <div class="card">5</div>
-      <div class="card">6</div>
+
+    <div class="game-section">
+      <div class="memory-card">
+        <div class="back-card"></div>
+        <div class="front-card"></div>
+      </div>
+      <div class="memory-card">
+        <div class="back-card"></div>
+        <div class="front-card"></div>
+      </div>
+      <div class="memory-card">
+        <div class="back-card"></div>
+        <div class="front-card"></div>
+      </div>
+      <div class="memory-card">
+        <div class="back-card">1</div>
+        <div class="front-card">1</div>
+      </div>
+      <div class="memory-card">
+        <div class="back-card">1</div>
+        <div class="front-card">1</div>
+      </div>
+      <div class="memory-card">
+        <div class="back-card">1</div>
+        <div class="front-card"></div>
+      </div>
     </div>
     <div>
       <!--
@@ -30,9 +55,10 @@
         -->
       <button id="play-again">play again</button>
     </div>
+
     <script
-      src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-      integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
       crossorigin="anonymous"
     ></script>
     <script src="main.js"></script>
