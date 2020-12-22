@@ -1,3 +1,10 @@
+//game audio
+bgMusic = new Audio("audio/bgMusic.mp3");
+correct_Audio = new Audio("audio/correct-audio.mp3");
+flip_Audio = new Audio("audio/flip-audio.mp3");
+lose_Audio = new Audio("audio/lose-audio.mp3");
+win_Audio = new Audio("audio/win-audio.mp3");
+
 //declare flipcarf to check if it is the first select or the second
 const card = $(".memory-card");
 //card options
@@ -30,19 +37,21 @@ let loseCount = 0;
 let timer = 0;
 
 //start game
-const overlay = $(".overlay");
-overlay.click(function () {
-  overlay.removeClass("visible");
+const startGame = $("#start");
+const start = startGame.click(function () {
+  startGame.removeClass("visible");
+  shuffleCard(cardArray);
+  bgMusic.play();
   timer = setInterval(updateCountDown, 1000);
 });
 
 //timer
 let time = 1.0 * 60;
-const countDown = document.querySelector("#timer");
+const countDown = $("#timer");
 const updateCountDown = function () {
   let minutes = Math.floor(time / 60);
   let seconds = time % 60;
-  countDown.innerHTML = "Time: " + minutes + ":" + seconds;
+  $(countDown).text("Time: " + minutes + ":" + seconds);
   time--;
   if (time < 0) {
     clearInterval(timer);
@@ -59,16 +68,17 @@ function procress_bar() {
   $(progress).text($(progress).attr("data_done") + "%");
 }
 //shuffle cards
-
-const shuffled = cardArray.sort(() => Math.random() - 0.5);
-const back_card = $(".back-card");
-for (i = 0; i < cardArray.length; i++) {
-  back_card[i].innerHTML = cardArray[i].name; //img
-  card[i].setAttribute("id", i);
+function shuffleCard(cardArray) {
+  const shuffled = cardArray.sort(() => Math.random() - 0.5);
+  const back_card = $(".back-card");
+  for (i = 0; i < cardArray.length; i++) {
+    back_card[i].innerHTML = cardArray[i].name; //img
+    card[i].setAttribute("id", i);
+  }
 }
-
 //flip card --> movesCount
-const flipCard = card.click(function () {
+const flipCard = card.on("click", function () {
+  flip_Audio.play();
   const currentCard = event.target;
   const card_id = $(currentCard).parents(currentCard).attr("id");
   card_Id.push(card_id);
@@ -76,16 +86,18 @@ const flipCard = card.click(function () {
   $(currentCard).addClass("flip");
   movesCount += 1;
   $(moveCounter).text(movesCount);
-  //$("#" + card_Id).unbind("click");
+  //$("#" + card_Id).off("click");
   if (card_chosen.length === 2) {
     // $(card).unbind("click");
     setTimeout(check_Matching, 500);
   }
+
   console.log(card_chosen);
 });
 //matching card
 function check_Matching() {
   if (card_chosen[0] === card_chosen[1]) {
+    correct_Audio.play();
     Correct.push(card_chosen[0]);
     Correct.push(card_chosen[1]);
     //change img
@@ -111,13 +123,19 @@ function check_Matching() {
 }
 // win --> check if all cards are open
 function win() {
+  win_Audio.play();
   //message && stars && restart button && win count
+  $("#win").addClass("visible");
   clearInterval(timer);
   statrsRate(movesCount);
+  winCount += 1;
   console.log("win");
 }
 // lose --> call win time is up
 function lose() {
+  lose_Audio.play();
+  $("#lose").addClass("visible");
+  loseCount += 1;
   //message && restart button && lose count
   console.log("lose");
 }
@@ -133,3 +151,10 @@ const statrsRate = function (movesCount) {
 };
 
 //restart
+
+// restart.click(function () {
+//   movesCount = 0;
+//   start;
+//   time = 1.0 * 60;
+//   console.log("restartButton");
+// });
