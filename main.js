@@ -1,88 +1,48 @@
 //declare flipcarf to check if it is the first select or the second
-const card = $(".front-card");
-const cards = [0, 0, 1, 1, 2, 5, 3, 2, 3];
+const card = $(".memory-card");
+//const cards = [...card];
+//card options
+const cardArray = [
+  { name: 2, img: "" },
+  { name: 2, img: "" },
+  { name: 5, img: "" },
+  { name: 5, img: "" },
+  { name: 7, img: "" },
+  { name: 7, img: "" },
+];
 const moveCounter = $("#moveCounter");
 let hasFlippedcard = false;
-let firstCard = "";
-let secondCard = "";
+let card_chosen = [];
+const Correct = [];
 let moves = 0;
+let timer = 0;
 
 //start game
 const overlay = $(".overlay");
 overlay.click(function () {
   overlay.removeClass("visible");
-  setInterval(updateCountDown, 1000);
+  timer = setInterval(updateCountDown, 1000);
 });
 
 //timer
-let time = 1.5 * 60;
+let time = 0.1 * 60;
 const countDown = document.querySelector("#timer");
 const updateCountDown = function () {
   let minutes = Math.floor(time / 60);
   let seconds = time % 60;
-  countDown.innerHTML = minutes + ":" + seconds;
+  countDown.innerHTML = "Time: " + minutes + ":" + seconds;
   time--;
+  if (time < 0) {
+    clearInterval(timer);
+    //call f lose
+  }
 };
 //progress-bar
 const progress = $(".progress_done");
 $(progress).css("width", $(progress).attr("data_done") + "%");
 //$(progress).text("0%");
 
-//function for flipCard
-card.click(function () {
-  const currentCard = event.target;
-  // to show ar hide the card
-  $(currentCard).addClass("flip");
-  if (hasFlippedcard == false) {
-    firstCard = $(currentCard).text();
-    hasFlippedcard = true;
-  } else {
-    secondCard = $(currentCard).text();
-    hasFlippedcard = false;
-    moveCounter.text("move: " + (moves += 1));
-  }
-  console.log(firstCard);
-  console.log(secondCard);
-
-  //get selections and check if it's matches
-  if (firstCard === secondCard) {
-    $(currentCard).unbind("click");
-    $(firstCard).removeClass("flip");
-
-    // $(currentCard).removeClass("flip");
-  } else {
-    //secondCard.removeClass("flip");
-    $(firstCard).removeClass("flip");
-    // secondCard.classList.remove("flip");
-  }
-});
-
-// matched / unmatched
-const matched = function () {
-  //.addClass
-  //enable cards and disable matched cards
-};
-const unmatched = function (card) {};
-
-//shuffle cards
-const shuffle = function (cards) {
-  let index = cards.length;
-  let randomIndex, temporaryValue;
-  while (index !== 0) {
-    randomIndex = Math.floor(Math.random() * index);
-    index -= 1;
-    temporaryValue = cards[index];
-    cards[index] = cards[randomIndex];
-    cards[randomIndex] = temporaryValue;
-  }
-  card.text(cards[index]);
-
-  return cards;
-};
-console.log(shuffle(cards));
-shuffle(cards);
-
-//stars rate
+//stars rate --> //cole in win
 const statrsRate = function (moves) {
   if (moves > 8 && moves < 12) {
     //show stars 3
@@ -91,4 +51,30 @@ const statrsRate = function (moves) {
   }
 };
 
-// win / lose
+// win --> check if all cards are open
+// lose --> call win time is up
+
+//shuffle cards
+const shuffled = cardArray.sort(() => Math.random() - 0.5);
+const back_card = $(".back-card");
+for (i = 0; i < cardArray.length; i++) {
+  back_card[i].innerHTML = cardArray[i].name; //img
+  card[i].setAttribute("data-id", i);
+  console.log(card[i]);
+}
+
+//flip card --> moves
+card.click(function () {
+  const currentCard = event.target;
+  const card_id = $(currentCard).parents(currentCard).attr("data-id");
+  console.log(card_id);
+  card_chosen.push(cardArray[card_id].name);
+  $(currentCard).addClass("flip");
+  if (card_chosen.length === 2) {
+    setTimeout(checkForMatch, 500);
+  }
+  console.log(card_chosen);
+});
+//matching card
+
+//restart
