@@ -81,7 +81,7 @@ body {
 }
 
 #play-again {
-  display: none;
+  /*  display: none;*/
 }
 
 .front-card {
@@ -96,7 +96,7 @@ body {
   background-color: cornsilk;
 }
 .back-card {
-  background-color: black;
+  background-color: darksalmon;
   position: absolute;
   display: flex;
   height: 100%;
