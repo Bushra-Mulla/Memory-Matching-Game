@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Events</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Memory Game</title>
     <link rel="stylesheet" href="style.css" />
   </head>
 
@@ -15,20 +16,25 @@
         <!--progress-bar / timer / moves / win /lose /
         restart / -->
         <ul class="score-panel">
-          <li class="scores" id="stars"></li>
           <li class="scores" id="moveCounter">move: 0</li>
+          <li class="scores" id="winer">win: 0</li>
+          <li class="scores" id="loser">Lose: 0</li>
           <li class="scores" id="timer">Time: 0:0</li>
           <li class="scores" id="progress">
             <div class="progress_done" data_done="5">o%</div>
           </li>
-          <li class="scores"><button id="resetGame">play again</button></li>
+          <li class="scores"><img src="img/reset.png" class="resetGame" /></li>
         </ul>
         <div class="overlay" id="win">
           congratulations<br />
           You win
+          <button class="resetGame">play again</button>
           <div></div>
         </div>
-        <div class="overlay" id="lose">you lose</div>
+        <div class="overlay" id="lose">
+          you lose
+          <button class="resetGame playAgain" play again</button>
+        </div>
       </div>
     </div>
 

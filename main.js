@@ -45,7 +45,7 @@ const start = $("#start").click(function () {
 });
 
 //timer
-let time = 61.0 * 60;
+let time = 1.0 * 60;
 const countDown = $("#timer");
 const updateCountDown = function () {
   let minutes = Math.floor(time / 60);
@@ -62,13 +62,14 @@ const updateCountDown = function () {
 let done = 0;
 const progress = $(".progress_done");
 function procress_bar() {
+  done = (match.length / cardArray.length) * 100;
   $(progress).attr("data_done", done);
   $(progress).css("width", $(progress).attr("data_done") + "%");
   $(progress).text($(progress).attr("data_done") + "%");
 }
 //shuffle cards
 function shuffleCard(cardArray) {
-  const shuffled = cardArray.sort(() => Math.random() - 0.5);
+  cardArray = cardArray.sort(() => Math.random() - 0.5);
   const back_card = $(".back-card");
   for (i = 0; i < cardArray.length; i++) {
     back_card[i].src = cardArray[i].img; //img
@@ -76,33 +77,30 @@ function shuffleCard(cardArray) {
   }
 }
 //flip card --> movesCount
-const flipCard = card.on("click", function () {
+card.on("click", flipCard);
+function flipCard() {
   flip_Audio.play();
   const currentCard = event.target;
   const card_id = $(currentCard).parents(currentCard).attr("id");
   card_Id.push(card_id);
   card_chosen.push(cardArray[card_id].name);
   $(currentCard).addClass("flip");
-  movesCount += 1;
-  $(moveCounter).text("move: " + movesCount);
-  //$("#" + card_Id).off("click");
+  $("#" + card_id).off("click");
+
   if (card_chosen.length === 2) {
-    // $(card).unbind("click");
+    movesCount += 1;
+    $(moveCounter).text("move: " + movesCount);
     setTimeout(check_Matching, 500);
   }
 
   console.log(card_chosen);
-});
+}
 //matching card
 function check_Matching() {
   if (card_chosen[0] === card_chosen[1]) {
     correct_Audio.play();
     match.push(card_chosen[0]);
     match.push(card_chosen[1]);
-    //removeEventListener
-    $("#" + card_Id[0]).unbind("click");
-    $("#" + card_Id[1]).unbind("click");
-    done = (match.length / cardArray.length) * 100;
     procress_bar();
     if (cardArray.length === match.length) {
       win();
@@ -114,6 +112,9 @@ function check_Matching() {
     $("#" + card_Id[1])
       .children()
       .removeClass("flip");
+
+    $("#" + card_Id[0]).on("click", flipCard);
+    $("#" + card_Id[1]).on("click", flipCard);
   }
   card_chosen = [];
   card_Id = [];
@@ -124,40 +125,46 @@ function win() {
   //message && stars && restart button && win count
   $("#win").addClass("visible");
   clearInterval(timer);
-  statrsRate(movesCount);
+  statrsRate();
   winCount += 1;
-  console.log("win");
+  $("#winer").text("win: " + winCount);
 }
 // lose --> call win time is up
 function lose() {
+  //message && restart button && lose count
   lose_Audio.play();
   $("#lose").addClass("visible");
   loseCount += 1;
-  //message && restart button && lose count
-  console.log("lose");
+  $("#loser").text("lose: " + loseCount);
 }
 //stars rate --> //cole in win
-const statrsRate = function (movesCount) {
+function statrsRate() {
   if (movesCount > 8 && movesCount < 12) {
     //show stars 3
+    $("#stars").attr("src", "img/stars_3.png");
     console.log(3);
   } else if (movesCount > 13) {
     //show stars 1
     console.log(1);
   }
-};
+}
 
 //restart
 
-$("#resetGame").on("click", function () {
-  console.log("mmmmmmmmmmmmm");
-
+$(".resetGame").on("click", restart);
+function restart() {
+  //reset the timer/moves/priogress/shiffle/flip
   clearInterval(timer);
-  movesCount = 0;
-  match = [];
-  $(moveCounter).text("move: " + movesCount);
-  shuffleCard(cardArray);
   time = 1.0 * 60;
   timer = setInterval(updateCountDown, 1000);
+  movesCount = 0;
+  $(moveCounter).text("move: " + movesCount);
+
+  match = [];
+  procress_bar();
+  shuffleCard(cardArray);
   $(".flip").removeClass("flip");
-});
+  card.on("click", flipCard);
+
+  $(".visible").removeClass("visible");
+}

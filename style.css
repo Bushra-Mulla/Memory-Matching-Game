@@ -22,14 +22,12 @@ h1 {
   padding: 10px;
 }
 .overlay {
+  left: 20%;
+  right: 20%;
+  top: 25%;
   display: none;
   text-align: center;
   position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  top: 0;
-  width: 100%;
   justify-content: center;
   align-items: center;
   z-index: 100;
@@ -43,18 +41,18 @@ h1 {
 
 @keyframes overlay-grow {
   from {
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(143, 138, 156, 0);
     font-size: 0;
   }
   to {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(163, 162, 173, 0.8);
     font-size: 10em;
   }
 }
 
 #progress {
   height: 24px;
-  width: 35%;
+  width: 30%;
   background-color: #674b8125;
   border-radius: 20px;
   margin: 5px;
@@ -91,8 +89,14 @@ h1 {
   margin: 15px;
   position: relative;
 }
+.resetGame {
+  width: 20px;
+  margin: 0;
+}
 
-#play-again {
+.play-again {
+  width: 1500px;
+  height: 90px;
   border-radius: 15px;
   box-shadow: 0 9px #999;
   font-size: 24px;
@@ -101,14 +105,15 @@ h1 {
   background-color: #af814c;
   color: #fff;
   border: none;
-  /*  display: none;*/
+  display: none;
 }
+/* 
 #play-again:hover {
   background-color: blanchedalmond;
 }
 #play-again:active {
   transform: scale(1.02);
-}
+} */
 .front-card {
   width: 100%;
   height: 100%;
@@ -139,8 +144,23 @@ c img.filter {
   -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 900px) {
+  body {
+    width: 100%;
+    height: 100%;
+  }
   .game-section {
     width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header {
+    width: 100%;
+    margin: 0;
+  }
+  .memory-card {
+    width: 70px;
+    height: 70px;
   }
 }
