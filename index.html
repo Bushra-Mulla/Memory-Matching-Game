@@ -4,28 +4,31 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Events</title>
-    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <div class="header">
       <h1>Memory Game</h1>
       <div class="overlay visible" id="start">Click to Start</div>
-      <div class="score-panel">
+      <div>
         <!--progress-bar / timer / moves / win /lose /
         restart / -->
-        <p id="moveCounter">move: 0</p>
-        <p id="timer">Time: 0:0</p>
-        <div class="progress">
-          <div class="progress_done" data_done="5">o%</div>
-        </div>
+        <ul class="score-panel">
+          <li class="scores" id="stars"></li>
+          <li class="scores" id="moveCounter">move: 0</li>
+          <li class="scores" id="timer">Time: 0:0</li>
+          <li class="scores" id="progress">
+            <div class="progress_done" data_done="5">o%</div>
+          </li>
+          <li class="scores"><button id="resetGame">play again</button></li>
+        </ul>
         <div class="overlay" id="win">
           congratulations<br />
           You win
           <div></div>
         </div>
         <div class="overlay" id="lose">you lose</div>
-        <button id="play-again">play again</button>
       </div>
     </div>
 

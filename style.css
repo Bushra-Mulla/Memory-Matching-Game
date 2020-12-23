@@ -3,10 +3,23 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-image: url("img/bg.png");
+  background-position: center;
+}
+.header {
+  text-align: center;
+}
+h1 {
 }
 .score-panel {
-  display: inline;
-  width: 300px;
+  background-color: rgba(185, 159, 183, 0.5);
+  list-style-type: none;
+  border-radius: 20px;
+}
+.scores {
+  display: inline-block;
+  align-content: center;
+  padding: 10px;
 }
 .overlay {
   display: none;
@@ -20,7 +33,7 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 100;
-  color: #ff6d00;
+  color: #240342f3;
 }
 .overlay.visible {
   display: flex;
@@ -39,40 +52,43 @@ body {
   }
 }
 
-.progress {
+#progress {
   height: 24px;
-  width: 100%;
-  background-color: #d8d8d8;
+  width: 35%;
+  background-color: #674b8125;
   border-radius: 20px;
-  margin: 10px;
+  margin: 5px;
+  padding: 0;
 }
 
 .progress_done {
   height: 24px;
   width: 0;
-  background: linear-gradient(to left, #f2709c, #ff9472);
+  background: linear-gradient(to left, #cce6ec, #f2709c);
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 20px;
 }
-
+.header {
+  width: 580px;
+}
 .game-section {
-  width: 500px;
-  display: block;
-
+  width: 580px;
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  background: linear-gradient(160deg, #aa7ecd75 0%, #02ccbb54 100%);
 }
 
 .memory-card {
   width: 100px;
-  height: 55px;
+  height: 100px;
   display: inline-flex;
   background-color: skyblue;
   text-align: center;
-  margin: 10px;
+  margin: 15px;
   position: relative;
 }
 
@@ -91,19 +107,19 @@ body {
   background-color: blanchedalmond;
 }
 #play-again:active {
-  transform: translateY(4px);
+  transform: scale(1.02);
 }
 .front-card {
   width: 100%;
   height: 100%;
   display: flex;
-  background-color: burlywood;
   position: absolute;
-
+  background-color: #3c384d;
   backface-visibility: hidden;
+  border-radius: 5%;
 }
 .front-card:hover {
-  background-color: cornsilk;
+  background: linear-gradient(150deg, #3c384d 0%, #ffffff 450%);
 }
 .front-card.flip {
   /* effect in fliping the card*/
@@ -111,16 +127,15 @@ body {
   display: none;
 }
 .front-card:active {
-  transform: translateY(4px);
 }
 .back-card {
-  background-color: darksalmon;
+  background-color: rgb(248, 246, 245);
   position: absolute;
   display: flex;
   height: 100%;
   width: 100%;
 }
-img.filter {
+c img.filter {
   -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
 }

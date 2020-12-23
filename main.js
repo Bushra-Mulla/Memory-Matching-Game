@@ -9,26 +9,26 @@ win_Audio = new Audio("audio/win-audio.mp3");
 const card = $(".memory-card");
 //card options
 const cardArray = [
-  { name: 2, img: "" },
-  { name: 2, img: "" },
-  { name: 5, img: "" },
-  { name: 5, img: "" },
-  { name: 7, img: "" },
-  { name: 7, img: "" },
-  { name: 1, img: "" },
-  { name: 1, img: "" },
-  { name: 3, img: "" },
-  { name: 3, img: "" },
-  { name: 4, img: "" },
-  { name: 4, img: "" },
-  { name: 6, img: "" },
-  { name: 6, img: "" },
-  { name: 8, img: "" },
-  { name: 8, img: "" },
+  { name: 1, img: "img/1.jpg" },
+  { name: 2, img: "img/2.jpg" },
+  { name: 3, img: "img/3.jpg" },
+  { name: 4, img: "img/4.jpg" },
+  { name: 5, img: "img/5.jpg" },
+  { name: 6, img: "img/6.jpg" },
+  { name: 7, img: "img/7.jpg" },
+  { name: 8, img: "img/8.jpg" },
+  { name: 1, img: "img/1.jpg" },
+  { name: 2, img: "img/2.jpg" },
+  { name: 3, img: "img/3.jpg" },
+  { name: 4, img: "img/4.jpg" },
+  { name: 5, img: "img/5.jpg" },
+  { name: 6, img: "img/6.jpg" },
+  { name: 7, img: "img/7.jpg" },
+  { name: 8, img: "img/8.jpg" },
 ];
 let card_chosen = [];
 let card_Id = [];
-const Correct = [];
+let match = [];
 //score-panel
 const moveCounter = $("#moveCounter");
 let movesCount = 0;
@@ -37,16 +37,15 @@ let loseCount = 0;
 let timer = 0;
 
 //start game
-const startGame = $("#start");
-const start = startGame.click(function () {
-  startGame.removeClass("visible");
+const start = $("#start").click(function () {
+  $("#start").removeClass("visible");
   shuffleCard(cardArray);
   bgMusic.play();
   timer = setInterval(updateCountDown, 1000);
 });
 
 //timer
-let time = 1.0 * 60;
+let time = 61.0 * 60;
 const countDown = $("#timer");
 const updateCountDown = function () {
   let minutes = Math.floor(time / 60);
@@ -72,7 +71,7 @@ function shuffleCard(cardArray) {
   const shuffled = cardArray.sort(() => Math.random() - 0.5);
   const back_card = $(".back-card");
   for (i = 0; i < cardArray.length; i++) {
-    back_card[i].innerHTML = cardArray[i].name; //img
+    back_card[i].src = cardArray[i].img; //img
     card[i].setAttribute("id", i);
   }
 }
@@ -85,7 +84,7 @@ const flipCard = card.on("click", function () {
   card_chosen.push(cardArray[card_id].name);
   $(currentCard).addClass("flip");
   movesCount += 1;
-  $(moveCounter).text(movesCount);
+  $(moveCounter).text("move: " + movesCount);
   //$("#" + card_Id).off("click");
   if (card_chosen.length === 2) {
     // $(card).unbind("click");
@@ -98,16 +97,14 @@ const flipCard = card.on("click", function () {
 function check_Matching() {
   if (card_chosen[0] === card_chosen[1]) {
     correct_Audio.play();
-    Correct.push(card_chosen[0]);
-    Correct.push(card_chosen[1]);
-    //change img
-    //cards[optionOneId].setAttribute("src", "images/blank.png");
+    match.push(card_chosen[0]);
+    match.push(card_chosen[1]);
     //removeEventListener
     $("#" + card_Id[0]).unbind("click");
     $("#" + card_Id[1]).unbind("click");
-    done = (Correct.length / cardArray.length) * 100;
+    done = (match.length / cardArray.length) * 100;
     procress_bar();
-    if (cardArray.length === Correct.length) {
+    if (cardArray.length === match.length) {
       win();
     }
   } else {
@@ -152,9 +149,15 @@ const statrsRate = function (movesCount) {
 
 //restart
 
-// restart.click(function () {
-//   movesCount = 0;
-//   start;
-//   time = 1.0 * 60;
-//   console.log("restartButton");
-// });
+$("#resetGame").on("click", function () {
+  console.log("mmmmmmmmmmmmm");
+
+  clearInterval(timer);
+  movesCount = 0;
+  match = [];
+  $(moveCounter).text("move: " + movesCount);
+  shuffleCard(cardArray);
+  time = 1.0 * 60;
+  timer = setInterval(updateCountDown, 1000);
+  $(".flip").removeClass("flip");
+});
