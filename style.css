@@ -164,3 +164,8 @@ c img.filter {
     height: 70px;
   }
 }
+
+.rating > span:hover:before {
+  content: "\2605";
+  position: absolute;
+}

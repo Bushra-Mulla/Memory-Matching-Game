@@ -41,7 +41,7 @@ $("#start").on("click", start);
 function start() {
   $("#start").removeClass("visible");
   shuffleCard(cardArray);
-  //bgMusic.play();
+  bgMusic.play();
   time = 1.0 * 60;
   timer = setInterval(updateCountDown, 1000);
 }
