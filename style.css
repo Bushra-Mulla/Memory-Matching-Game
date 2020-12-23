@@ -30,7 +30,7 @@ h1 {
   position: fixed;
   justify-content: center;
   align-items: center;
-  z-index: 100;
+  z-index: 1;
   color: #240342f3;
 }
 .overlay.visible {
@@ -46,7 +46,7 @@ h1 {
   }
   to {
     background-color: rgba(163, 162, 173, 0.8);
-    font-size: 10em;
+    font-size: 150px;
   }
 }
 
@@ -89,31 +89,30 @@ h1 {
   margin: 15px;
   position: relative;
 }
-.resetGame {
+#reset {
   width: 20px;
   margin: 0;
 }
 
-.play-again {
-  width: 1500px;
+#play-again {
+  width: 120px;
   height: 90px;
+  margin: 50px;
   border-radius: 15px;
   box-shadow: 0 9px #999;
   font-size: 24px;
   text-align: center;
   padding: 15px 25px;
-  background-color: #af814c;
-  color: #fff;
+  background-color: #d4becf;
+  color: rgb(31, 5, 5);
   border: none;
   display: none;
 }
-/* 
 #play-again:hover {
   background-color: blanchedalmond;
 }
 #play-again:active {
-  transform: scale(1.02);
-} */
+}
 .front-card {
   width: 100%;
   height: 100%;
@@ -132,6 +131,7 @@ h1 {
   display: none;
 }
 .front-card:active {
+  transform: scale(1.02);
 }
 .back-card {
   background-color: rgb(248, 246, 245);
