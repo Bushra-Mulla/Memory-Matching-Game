@@ -27,9 +27,18 @@ Access to the [Game](https://pages.git.generalassemb.ly/bushra-mulla/Memory-Matc
 ## wireframes / Game Web Page
 
 ![wireframes](./img/whireframes.png)
-![Web Page](./img/web.mp4)
+![Web Page](./img/web.gif)
 
-## User Stories:
+## User Stories
+
+- As a user, I should be able to start a new memory matching game.
+- As a user, I should be able to click on a card to flip the first card and then the second card, and so on.
+- As a user, I should be shown the cards have been correctly matched and the moves count.
+- As a user, I should not be able to click the same card twice.
+- As a user, I should be shown a message when I win, lose.
+- As a user, I should not be able to continue playing once I win, lose.
+- As a user, I should be able to play the game again without refreshing the page.
+- As a user, I should be able to show result achieved.
 
 ## Project Plan
 

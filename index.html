@@ -15,29 +15,31 @@
       <div>
         <!--progress-bar / timer / moves / win /lose /
         restart / -->
+
         <ul class="score-panel">
-          <li>
-            <div class="rating"><span>☆</span><span>☆</span><span>☆</span></div>
+          <li class="scores">
+            <span id="star1">&#9733;</span>
+            <span id="star2">&#9733;</span>
+            <span id="star3">&#9733;</span>
           </li>
-          <li class="scores" id="moveCounter">moves: 0</li>
           <li class="scores" id="winer">win: 0</li>
           <li class="scores" id="loser">Lose: 0</li>
+          <li class="scores" id="moveCounter">moves: 0</li>
           <li class="scores" id="timer">Time: 0:0</li>
           <li class="scores" id="progress">
-            <div class="progress_done" data_done="5">o%</div>
+            <div class="progress_done" data_done="5"></div>
           </li>
           <li class="scores">
             <img src="img/reset.png" class="resetGame" id="reset" />
           </li>
         </ul>
         <div class="overlay" id="win">
-          congratulations<br />
           You win
-          <button class="resetGame">play again</button>
+          <button class="resetGame play-again">play again</button>
         </div>
         <div class="overlay" id="lose">
           you lose
-          <button class="resetGame" id="playAgain">play again</button>
+          <button class="resetGame play-again">play again</button>
         </div>
       </div>
     </div>

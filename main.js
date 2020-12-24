@@ -87,9 +87,11 @@ function flipCard() {
   card_chosen.push(cardArray[card_id].name);
   $(currentCard).addClass("flip");
   $("#" + card_id).unbind("click");
-  movesCount += 1;
-  $(moveCounter).text("move: " + movesCount);
+
   if (card_chosen.length === 2) {
+    movesCount += 1;
+    $(moveCounter).text("move: " + movesCount);
+    statrsRate();
     setTimeout(check_Matching, 500);
   }
 
@@ -139,13 +141,12 @@ function lose() {
 
 //stars rate --> //cole in win
 function statrsRate() {
-  if (movesCount > 8 && movesCount < 12) {
-    //show stars 3
-    $("#stars").attr("src", "img/stars_3.png");
-    console.log(3);
-  } else if (movesCount > 13) {
-    //show stars 1
-    console.log(1);
+  if (movesCount <= 12) {
+    $(".stars").children().text("★");
+  } else if (movesCount > 12 && movesCount < 15) {
+    $("#star3").text("☆");
+  } else if (movesCount > 15) {
+    $("#star2").text("☆");
   }
 }
 
@@ -159,6 +160,7 @@ function restart() {
   card_chosen.length = 0;
   card_Id.length = 0;
   match.length = 0;
+  statrsRate();
   procress_bar();
   $(".flip").removeClass("flip");
   $(".visible").removeClass("visible");
