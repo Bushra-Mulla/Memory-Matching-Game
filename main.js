@@ -1,4 +1,3 @@
-//game audio
 const bgMusic = new Audio("./audio/bgMusic.mp3");
 const correct_Audio = new Audio("./audio/correct-audio.mp3");
 const flip_Audio = new Audio("./audio/flip-audio.mp3");
