@@ -142,7 +142,7 @@ function lose() {
 //stars rate --> //cole in win
 function statrsRate() {
   if (movesCount <= 12) {
-    $(".stars").children().text("★");
+    $("#stars").children().text("★");
   } else if (movesCount > 12 && movesCount < 15) {
     $("#star3").text("☆");
   } else if (movesCount > 15) {
