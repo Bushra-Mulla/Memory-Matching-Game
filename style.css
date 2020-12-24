@@ -166,8 +166,9 @@ body {
     margin: 0;
   }
   .memory-card {
-    width: 65px;
-    height: 65px;
+    width: 70px;
+    margin: 10px;
+    height: 70px;
   }
 
   .overlay {
