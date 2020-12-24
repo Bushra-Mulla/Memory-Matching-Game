@@ -1,29 +1,29 @@
 //game audio
-const bgMusic = new Audio("audio/bgMusic.mp3");
-const correct_Audio = new Audio("audio/correct-audio.mp3");
-const flip_Audio = new Audio("audio/flip-audio.mp3");
-const lose_Audio = new Audio("audio/lose-audio.mp3");
-const win_Audio = new Audio("audio/win-audio.mp3");
+const bgMusic = new Audio("./audio/bgMusic.mp3");
+const correct_Audio = new Audio("./audio/correct-audio.mp3");
+const flip_Audio = new Audio("./audio/flip-audio.mp3");
+const lose_Audio = new Audio("./audio/lose-audio.mp3");
+const win_Audio = new Audio("./audio/win-audio.mp3");
 const card_chosen = []; //selector
 const card_Id = []; //selector_Id
 const match = [];
 const cardArray = [
-  { name: 1, img: "img/1.jpg" },
-  { name: 2, img: "img/2.jpg" },
-  { name: 3, img: "img/3.jpg" },
-  { name: 4, img: "img/4.jpg" },
-  { name: 5, img: "img/5.jpg" },
-  { name: 6, img: "img/6.jpg" },
-  { name: 7, img: "img/7.jpg" },
-  { name: 8, img: "img/8.jpg" },
-  { name: 1, img: "img/1.jpg" },
-  { name: 2, img: "img/2.jpg" },
-  { name: 3, img: "img/3.jpg" },
-  { name: 4, img: "img/4.jpg" },
-  { name: 5, img: "img/5.jpg" },
-  { name: 6, img: "img/6.jpg" },
-  { name: 7, img: "img/7.jpg" },
-  { name: 8, img: "img/8.jpg" },
+  { name: 1, img: "./img/1.jpg" },
+  { name: 2, img: "./img/2.jpg" },
+  { name: 3, img: "./img/3.jpg" },
+  { name: 4, img: "./img/4.jpg" },
+  { name: 5, img: "./img/5.jpg" },
+  { name: 6, img: "./img/6.jpg" },
+  { name: 7, img: "./img/7.jpg" },
+  { name: 8, img: "./img/8.jpg" },
+  { name: 1, img: "./img/1.jpg" },
+  { name: 2, img: "./img/2.jpg" },
+  { name: 3, img: "./img/3.jpg" },
+  { name: 4, img: "./img/4.jpg" },
+  { name: 5, img: "./img/5.jpg" },
+  { name: 6, img: "./img/6.jpg" },
+  { name: 7, img: "./img/7.jpg" },
+  { name: 8, img: "./img/8.jpg" },
 ]; //card options
 const moveCounter = $("#moveCounter");
 const card = $(".memory-card");
@@ -94,7 +94,6 @@ function flipCard() {
     statrsRate();
     setTimeout(check_Matching, 500);
   }
-
   console.log(card_chosen);
 }
 //matching card
@@ -130,6 +129,7 @@ function win() {
   statrsRate();
   winCount += 1;
   $("#winer").text("win: " + winCount);
+  card.unbind("click", flipCard);
 }
 // lose --> call win time is up
 function lose() {
@@ -137,6 +137,7 @@ function lose() {
   $("#lose").addClass("visible");
   loseCount += 1;
   $("#loser").text("lose: " + loseCount);
+  card.unbind("click", flipCard);
 }
 
 //stars rate --> //cole in win
